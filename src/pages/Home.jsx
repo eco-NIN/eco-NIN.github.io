@@ -24,7 +24,7 @@ const Home = () => {
             </div>
             <div className="text-center md:text-left max-w-2xl">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                John Doe
+                Yuzhe Guo
               </h1>
               <p className="text-xl text-gray-700 mb-6">
                 {t('home.title')}
