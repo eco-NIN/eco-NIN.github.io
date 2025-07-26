@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "home": "Home",
+    "research": "Research",
+    "projects": "Projects",
+    "life": "Life",
+    "contact": "Contact",
+    "cv": "CV"
+  },
+  "home": {
+    "title": "Academic Profile",
+    "intro": "Welcome to my academic homepage. I am a researcher focusing on artificial intelligence and machine learning.",
+    "photo_alt": "Profile Photo"
+  },
+  "common": {
+    "language": "Language",
+    "download_cv": "Download CV",
+    "email": "Email",
+    "github": "GitHub",
+    "google_scholar": "Google Scholar"
+  }
+}
