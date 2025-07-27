@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { lifeConfig } from '../config/lifeConfig';
 import { FaCalendarAlt, FaMapMarkerAlt, FaHeart, FaBookOpen, FaGlobe, FaArrowRight } from 'react-icons/fa';
 import TravelMap from '../components/TravelMap';
@@ -8,6 +9,7 @@ import TravelMapCartoon from '../components/TravelMapCartoon';
 import PhotoCarousel from '../components/PhotoCarousel';
 
 const Life = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('全部');
   const [selectedMoment, setSelectedMoment] = useState(null);
   const [mapType, setMapType] = useState('cartoon'); // 'leaflet', 'mapbox', 'cartoon'
@@ -27,15 +29,8 @@ const Life = () => {
       setClickedPost(null);
     }, 300);
 
-    // 如果有链接，跳转到随笔页面或外部链接
-    if (post.link) {
-      if (post.link.startsWith('http')) {
-        window.open(post.link, '_blank');
-      } else {
-        // 跳转到内部随笔页面
-        window.location.href = `/essays/${post.id}`;
-      }
-    }
+    // 跳转到文章详情页面
+    navigate(`/essays/${post.id}`);
   };
 
   return (
@@ -75,7 +70,7 @@ const Life = () => {
               <h2 className="text-2xl font-bold text-gray-800">随笔</h2>
             </div>
             <button 
-              onClick={() => window.location.href = '/essays'}
+              onClick={() => navigate('/essays')}
               className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors text-sm"
             >
               查看全部随笔 →

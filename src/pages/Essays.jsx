@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaBookOpen, FaCalendarAlt, FaArrowLeft, FaSearch, FaFilter } from 'react-icons/fa';
 import { lifeConfig } from '../config/lifeConfig';
 
 const Essays = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('全部');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('date'); // 'date', 'title', 'category'
@@ -31,6 +33,11 @@ const Essays = () => {
       }
     });
 
+  const handlePostClick = (post) => {
+    // 跳转到文章详情页面
+    navigate(`/essays/${post.id}`);
+  };
+
   return (
     <div className="min-h-screen w-full">
       <div className="w-full px-4 py-24">
@@ -45,7 +52,7 @@ const Essays = () => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <button 
-                onClick={() => window.history.back()}
+                onClick={() => navigate(-1)}
                 className="p-2 rounded-lg bg-white/30 hover:bg-white/50 transition-colors"
               >
                 <FaArrowLeft className="text-gray-600" />
@@ -115,15 +122,7 @@ const Essays = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="glass p-8 rounded-2xl hover:shadow-lg transition-all duration-300 cursor-pointer group"
-              onClick={() => {
-                if (post.link) {
-                  if (post.link.startsWith('http')) {
-                    window.open(post.link, '_blank');
-                  } else {
-                    window.location.href = `/essays/${post.id}`;
-                  }
-                }
-              }}
+              onClick={() => handlePostClick(post)}
             >
               <div className="flex items-start gap-6">
                 {/* 左侧日期 */}
