@@ -19,6 +19,7 @@ import Life from './pages/Life';
 import Contact from './pages/Contact';
 import CV from './pages/CV';
 import Homepage from './pages/Homepage';
+import Essays from './pages/Essays';
 
 function App() {
   const { i18n } = useTranslation();
@@ -41,6 +42,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/cv" element={<CV />} />
             <Route path="/homepage" element={<Homepage />} />
+            <Route path="/essays" element={<Essays />} />
           </Routes>
         </motion.main>
       </div>

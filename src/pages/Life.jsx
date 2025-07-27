@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { lifeConfig } from '../config/lifeConfig';
-import { FaCalendarAlt, FaMapMarkerAlt, FaHeart, FaBookOpen, FaGlobe } from 'react-icons/fa';
+import { FaCalendarAlt, FaMapMarkerAlt, FaHeart, FaBookOpen, FaGlobe, FaArrowRight } from 'react-icons/fa';
 import TravelMap from '../components/TravelMap';
 import TravelMapEnhanced from '../components/TravelMapEnhanced';
 import TravelMapCartoon from '../components/TravelMapCartoon';
+import PhotoCarousel from '../components/PhotoCarousel';
 
 const Life = () => {
   const [selectedCategory, setSelectedCategory] = useState('全部');
   const [selectedMoment, setSelectedMoment] = useState(null);
   const [mapType, setMapType] = useState('cartoon'); // 'leaflet', 'mapbox', 'cartoon'
+  const [clickedPost, setClickedPost] = useState(null);
 
   const categories = ['全部', '感悟', '技术', '旅行', '随笔'];
 
@@ -17,11 +19,30 @@ const Life = () => {
     ? lifeConfig.blogPosts 
     : lifeConfig.blogPosts.filter(post => post.category === selectedCategory);
 
+  const handlePostClick = (post) => {
+    setClickedPost(post.id);
+    
+    // 添加点击变色效果
+    setTimeout(() => {
+      setClickedPost(null);
+    }, 300);
+
+    // 如果有链接，跳转到随笔页面或外部链接
+    if (post.link) {
+      if (post.link.startsWith('http')) {
+        window.open(post.link, '_blank');
+      } else {
+        // 跳转到内部随笔页面
+        window.location.href = `/essays/${post.id}`;
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen w-full">
       <div className="w-full px-4 py-24">
         
-        {/* 生活剪影时间线 */}
+        {/* 生活剪影轮播 */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,57 +54,32 @@ const Life = () => {
             <h2 className="text-2xl font-bold text-gray-800">生活剪影</h2>
           </div>
           
-          {/* 生活剪影展示 */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {lifeConfig.lifeMoments.map((moment, index) => (
-              <motion.div
-                key={moment.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white/30 backdrop-blur-sm rounded-xl overflow-hidden border border-white/30 hover:bg-white/40 transition-colors cursor-pointer"
-                onClick={() => setSelectedMoment(moment)}
-              >
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={moment.image} 
-                    alt={moment.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x300?text=' + moment.title;
-                    }}
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <FaCalendarAlt className="text-primary text-sm" />
-                    <span className="text-sm text-gray-600">{moment.date}</span>
-                    <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full">
-                      {moment.category}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">{moment.title}</h3>
-                  <div className="flex items-center gap-2 mb-3">
-                    <FaMapMarkerAlt className="text-gray-500 text-sm" />
-                    <span className="text-sm text-gray-600">{moment.location}</span>
-                  </div>
-                  <p className="text-gray-700 text-sm line-clamp-3">{moment.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* 照片轮播 */}
+          <PhotoCarousel 
+            photos={lifeConfig.lifeMoments}
+            autoPlay={true}
+            interval={4000}
+          />
         </motion.section>
 
-        {/* 博客文章 */}
+        {/* 随笔文章 */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="glass p-8 rounded-2xl mb-12 w-full"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <FaBookOpen className="text-2xl text-primary" />
-            <h2 className="text-2xl font-bold text-gray-800">我的文字</h2>
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <FaBookOpen className="text-2xl text-primary" />
+              <h2 className="text-2xl font-bold text-gray-800">随笔</h2>
+            </div>
+            <button 
+              onClick={() => window.location.href = '/essays'}
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors text-sm"
+            >
+              查看全部随笔 →
+            </button>
           </div>
           
           {/* 分类筛选 */}
@@ -103,42 +99,87 @@ const Life = () => {
             ))}
           </div>
           
-          {/* 文章列表 */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {filteredPosts.map((post) => (
+          {/* 文章列表 - 一行一篇文章 */}
+          <div className="space-y-4">
+            {filteredPosts.map((post, index) => (
               <motion.div
                 key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white/30 backdrop-blur-sm rounded-xl p-6 border border-white/30 hover:bg-white/40 transition-colors cursor-pointer"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`group relative bg-white/30 backdrop-blur-sm rounded-xl p-6 border border-white/30 hover:bg-white/50 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden ${
+                  clickedPost === post.id ? 'bg-primary/20 border-primary/50 scale-95' : ''
+                }`}
+                onClick={() => handlePostClick(post)}
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded-full">
-                    {post.category}
-                  </span>
-                  <span className="text-sm text-gray-500">{post.date}</span>
+                {/* 左侧日期栏 */}
+                <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-secondary transition-all duration-300 ${
+                  clickedPost === post.id ? 'w-2 bg-primary' : ''
+                }`}></div>
+                
+                <div className="flex items-center gap-6 pl-6">
+                  {/* 日期信息 */}
+                  <div className="flex-shrink-0 text-center min-w-[80px]">
+                    <div className={`text-2xl font-bold transition-colors ${
+                      clickedPost === post.id ? 'text-white' : 'text-primary group-hover:text-primary/80'
+                    }`}>
+                      {post.date.split('年')[1]?.split('月')[0] || '01'}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {post.date.split('年')[0]}-{post.date.split('年')[1]?.split('月')[0] || '01'}
+                    </div>
+                  </div>
+                  
+                  {/* 文章内容 */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                        clickedPost === post.id 
+                          ? 'bg-white/30 text-white' 
+                          : 'bg-primary/20 text-primary'
+                      }`}>
+                        {post.category}
+                      </span>
+                      <h3 className={`text-lg font-semibold transition-colors truncate ${
+                        clickedPost === post.id ? 'text-white' : 'text-gray-800 group-hover:text-primary'
+                      }`}>
+                        {post.title}
+                      </h3>
+                    </div>
+                    <p className={`text-sm line-clamp-2 transition-colors ${
+                      clickedPost === post.id ? 'text-white/90' : 'text-gray-700 group-hover:text-gray-800'
+                    }`}>
+                      {post.summary}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {post.tags.map((tag) => (
+                        <span key={tag} className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                          clickedPost === post.id 
+                            ? 'bg-white/20 text-white' 
+                            : 'bg-gray-100 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary'
+                        }`}>
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* 右侧箭头 */}
+                  <div className={`flex-shrink-0 transition-all duration-300 transform ${
+                    clickedPost === post.id 
+                      ? 'opacity-100 translate-x-0 text-white' 
+                      : 'opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 text-primary'
+                  }`}>
+                    <FaArrowRight className="text-lg" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">{post.title}</h3>
-                <p className="text-gray-700 mb-4 line-clamp-3">{post.summary}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.map((tag) => (
-                    <span key={tag} className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-                <button 
-                  className="text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (post.link) {
-                      window.open(post.link, '_blank');
-                    }
-                  }}
-                >
-                  阅读更多 →
-                </button>
+                
+                {/* 悬停时的背景效果 */}
+                <div className={`absolute inset-0 transition-opacity duration-300 ${
+                  clickedPost === post.id 
+                    ? 'bg-primary/30 opacity-100' 
+                    : 'bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100'
+                }`}></div>
               </motion.div>
             ))}
           </div>

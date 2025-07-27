@@ -92,9 +92,9 @@ export default function Homepage() {
                   <a href="#" className="hover:text-primary transition-colors">
                     ORCID
                   </a>
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
           </motion.div>
           
           {/* 右侧主内容区 */}
@@ -104,8 +104,8 @@ export default function Homepage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:w-2/3"
           >
-            {/* 研究方向 */}
-            <div className="glass p-8 rounded-2xl mb-8">
+        {/* 研究方向 */}
+        <div className="glass p-8 rounded-2xl mb-8">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Research Interests</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {academicProfile.researchInterests.map((interest, index) => (
@@ -114,10 +114,10 @@ export default function Homepage() {
                     <p className="text-gray-700">
                       {interest.description}
                     </p>
-                  </div>
-                ))}
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
 
             {/* 教育背景 */}
             <div className="glass p-8 rounded-2xl mb-8">

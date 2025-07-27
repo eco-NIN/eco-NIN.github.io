@@ -45,7 +45,7 @@ const CV = () => {
                     <p className="font-semibold">{edu.degree}</p>
                     <p>{edu.institution}, {edu.period}</p>
                     <p className="text-sm text-gray-600">{edu.details}</p>
-                  </div>
+                </div>
                 ))}
               </div>
             </div>
@@ -57,7 +57,7 @@ const CV = () => {
                   <div key={index}>
                     <p className="font-semibold">{skill.category}</p>
                     <p>{skill.items}</p>
-                  </div>
+                </div>
                 ))}
               </div>
             </div>
