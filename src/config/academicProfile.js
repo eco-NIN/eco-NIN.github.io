@@ -8,98 +8,94 @@
 export const academicProfile = {
   // 基本信息
   name: "Yuzhe Guo",
-  title: "PhD Candidate, Computer Science",
-  institution: "Shanghai Jiao Tong University",
+  title: "Undergraduate Student, Computer Science",
+  institution: "East China University of Science and Technology",
   location: "Shanghai, China",
   
   // 个人简介
-  bio: "I am a PhD candidate in Computer Science at Shanghai Jiao Tong University. My research focuses on machine learning, artificial intelligence, and their applications in real-world problems. I am passionate about developing innovative solutions that bridge the gap between theoretical advances and practical applications.",
+  bio: "hi, I'm Yuzhe Guo, a undergraduate student in East China University of Science and Technology. I'm interested in machine learning, artificial intelligence, and their applications in real-world problems. I'm passionate about developing innovative solutions that bridge the gap between theoretical advances and practical applications.",
   
   // 头像图片路径
   imageUrl: "/images/profile.jpg",
   
   // 社交链接
   socialLinks: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    scholar: "https://scholar.google.com/citations?user=yourid",
-    email: "mailto:your.email@sjtu.edu.cn",
-    twitter: "https://twitter.com/yourusername", // 可选
-    website: "https://yourwebsite.com", // 可选
-    orcid: "https://orcid.org/0000-0000-0000-0000" // 可选
+    github: "https://github.com/eco-NIN",
+    // linkedin: "https://linkedin.com/in/yourusername",
+    // scholar: "https://scholar.google.com/citations?user=yourid",
+    email: "22013229@mail.ecust.edu.cn",
+    // twitter: "https://twitter.com/yourusername", // 可选
+    // website: "https://yourwebsite.com", // 可选
+    // orcid: "https://orcid.org/0000-0000-0000-0000" // 可选
   },
   
   // 研究方向
   researchInterests: [
     {
-      title: "Machine Learning",
-      description: "Deep learning, neural networks, and their applications in computer vision and natural language processing."
+      title: "Computer Vision",
+      description: "Object detection, image segmentation, and real-time vision systems using deep learning frameworks like YOLO and GANs."
     },
     {
       title: "Artificial Intelligence",
-      description: "AI systems, reinforcement learning, and intelligent decision-making algorithms."
+      description: "Applied AI in education, robotics, and human-computer interaction, with an interest in the interpretability and ethics of AI systems."
     },
     {
-      title: "Data Science",
-      description: "Big data analytics, statistical modeling, and predictive analytics for real-world applications."
+      title: "Multimodal Learning",
+      description: "Combining visual, motion (IMU), and textual data for tasks like identity recognition, human activity understanding, and information generation."
     },
     {
-      title: "Computer Vision",
-      description: "Image processing, object detection, and visual understanding systems."
+      title: "Machine Learning Systems",
+      description: "Designing lightweight, deployable learning systems and optimizing training pipelines for real-world applications."
     }
   ],
   
   // 最新动态
   recentUpdates: [
     {
-      title: "Paper accepted",
-      description: "at ICML 2024: \"Novel Approaches to Deep Learning\"",
-      date: "March 2024"
+      title: "YOLOv7-based Tomato Detection System Completed",
+      description: "Deployed a local Gradio interface with custom-trained model for agricultural automation.",
+      date: "June 2025"
     },
     {
-      title: "Conference presentation",
-      description: "at NeurIPS 2023",
-      date: "December 2023"
+      title: "IMU-based Identity Recognition Project Finished",
+      description: "Developed a CNN-based continuous identity recognition pipeline with quaternion preprocessing and ensemble voting.",
+      date: "May 2025"
     },
     {
-      title: "Research grant",
-      description: "awarded for AI ethics project",
-      date: "November 2023"
+      title: "GAN-based MNIST Generation Visualizer Launched",
+      description: "Implemented training visualization and parameter tuning for GAN generating digit '5'.",
+      date: "April 2025"
     }
   ],
+  
   
   // 教育背景
   education: [
     {
-      degree: "PhD in Computer Science",
+      degree: "Bachelor of Engineering in Artificial Intelligence",
       institution: "Shanghai Jiao Tong University",
-      year: "2021 - Present"
+      year: "2021 - 2025 (Expected)"
     },
     {
-      degree: "Master of Science in Computer Science",
-      institution: "Shanghai Jiao Tong University",
-      year: "2019 - 2021"
-    },
-    {
-      degree: "Bachelor of Science in Computer Science",
-      institution: "Shanghai Jiao Tong University",
-      year: "2015 - 2019"
+      degree: "High School Science Track",
+      institution: "N/A",
+      year: "Before 2021"
     }
   ],
   
   // 工作经验
   experience: [
     {
-      title: "Research Assistant",
-      institution: "Shanghai Jiao Tong University",
-      period: "2021 - Present",
-      description: "Conducting research in machine learning and artificial intelligence."
+      title: "Research Intern",
+      institution: "East China University of Science and Technology",
+      period: "2022 - Present",
+      description: "Engaged in AI-related projects under faculty guidance, covering computer vision, human recognition, and multimodal interaction."
     },
     {
-      title: "Teaching Assistant",
-      institution: "Shanghai Jiao Tong University",
-      period: "2020 - 2021",
-      description: "Assisted in teaching undergraduate computer science courses."
+      title: "Technical Group Leader",
+      institution: "Course Project / Student Research",
+      period: "2022 - Present",
+      description: "Led full-stack development of intelligent systems, coordinated frontend/backend integration and algorithm deployment."
     }
   ]
 }; 

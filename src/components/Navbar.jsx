@@ -33,7 +33,7 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="hover:text-primary transition-colors">{t('nav.home')}</Link>
-          {/* <Link to="/homepage" className="hover:text-primary transition-colors">{t('nav.homepage')}</Link> */}
+          <Link to="/homepage" className="hover:text-primary transition-colors">{t('nav.homepage')}</Link>
           {/* <Link to="/research" className="hover:text-primary transition-colors">{t('nav.research')}</Link> */}
           {/* <Link to="/projects" className="hover:text-primary transition-colors">{t('nav.projects')}</Link> */}
           <Link to="/life" className="hover:text-primary transition-colors">{t('nav.life')}</Link>
