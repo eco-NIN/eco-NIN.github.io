@@ -5,12 +5,8 @@
     "projects": "Projects",
     "life": "Life",
     "contact": "Contact",
-    "cv": "CV"
-  },
-  "home": {
-    "title": "Academic Profile",
-    "intro": "Welcome to my academic homepage. I am a researcher focusing on artificial intelligence and machine learning.",
-    "photo_alt": "Profile Photo"
+    "cv": "CV",
+    "homepage": "Academic Homepage"
   },
   "common": {
     "language": "Language",

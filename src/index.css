@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 /* Global gradient background */
-body {
+/* body {
   background: linear-gradient(135deg, #f0f9ff 0%, #e6e6fa 50%, #f3e8ff 100%);
+  min-height: 100vh;
+  background-attachment: fixed;
+} */
+body {
+  background: linear-gradient(135deg, #b1cfe5 0%, #9696f1 50%, #b48ae1 100%);
   min-height: 100vh;
   background-attachment: fixed;
 }

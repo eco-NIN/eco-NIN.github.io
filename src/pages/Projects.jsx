@@ -1,53 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { projectsConfig } from '../config/projectsConfig';
 
 const Projects = () => {
   const { t } = useTranslation();
 
-  // Projects data
-  const projects = [
-    {
-      id: 1,
-      title: 'AI Medical Diagnosis Toolkit',
-      description: 'An open-source framework for medical image analysis and disease prediction using deep learning models.',
-      githubUrl: 'https://github.com/username/ai-medical-toolkit',
-      demoUrl: 'https://username.github.io/ai-medical-toolkit',
-      techStack: ['Python', 'PyTorch', 'React', 'FastAPI'],
-      image: 'https://via.placeholder.com/600x400?text=AI+Medical+Toolkit',
-    },
-    {
-      id: 2,
-      title: 'Multilingual Medical NLP Library',
-      description: 'A Python library for processing and analyzing clinical text in multiple languages with BERT-based models.',
-      githubUrl: 'https://github.com/username/multilingual-medical-nlp',
-      demoUrl: null,
-      techStack: ['Python', 'HuggingFace', 'Scikit-learn', 'NLTK'],
-      image: 'https://via.placeholder.com/600x400?text=Multilingual+Medical+NLP',
-    },
-    {
-      id: 3,
-      title: 'Academic Homepage Generator',
-      description: 'A React-based template for creating academic personal websites with built-in SEO optimization.',
-      githubUrl: 'https://github.com/username/academic-homepage',
-      demoUrl: 'https://username.github.io/academic-homepage',
-      techStack: ['React', 'Vite', 'Tailwind CSS', 'React Router'],
-      image: 'https://via.placeholder.com/600x400?text=Academic+Homepage',
-    },
-    {
-      id: 4,
-      title: 'Research Paper Manager',
-      description: 'A desktop application for organizing research papers with citation management and PDF annotation features.',
-      githubUrl: 'https://github.com/username/paper-manager',
-      demoUrl: null,
-      techStack: ['Electron', 'TypeScript', 'SQLite', 'Node.js'],
-      image: 'https://via.placeholder.com/600x400?text=Paper+Manager',
-    },
-  ];
-
   return (
     <div className="min-h-screen pt-24 pb-16 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,7 +24,7 @@ const Projects = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="grid md:grid-cols-2 gap-8"
         >
-          {projects.map((project, index) => (
+          {projectsConfig.projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}

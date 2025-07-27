@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
+import { cvConfig } from '../config/cvConfig';
 
 const CV = () => {
   const { t } = useTranslation();
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -24,10 +25,10 @@ const CV = () => {
           className="glass p-8 md:p-12 rounded-2xl"
         >
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-2">John Doe</h2>
-            <p className="text-xl text-gray-700 mb-6">PhD Candidate in Computer Science</p>
+            <h2 className="text-3xl font-bold mb-2">{cvConfig.basicInfo.name}</h2>
+            <p className="text-xl text-gray-700 mb-6">{cvConfig.basicInfo.title}</p>
             <a
-              href="/cv.pdf"
+              href={cvConfig.basicInfo.cvFile}
               download
               className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
@@ -39,43 +40,25 @@ const CV = () => {
             <div>
               <h3 className="text-xl font-bold mb-4 text-primary border-b border-primary/30 pb-2">Education</h3>
               <div className="space-y-4">
-                <div>
-                  <p className="font-semibold">PhD in Computer Science</p>
-                  <p>XYZ University, 2020-Present</p>
-                  <p className="text-sm text-gray-600">Thesis: Machine Learning Applications in Healthcare</p>
-                </div>
-                <div>
-                  <p className="font-semibold">MSc in Artificial Intelligence</p>
-                  <p>ABC Institute, 2018-2020</p>
-                  <p className="text-sm text-gray-600">GPA: 3.9/4.0</p>
-                </div>
-                <div>
-                  <p className="font-semibold">BSc in Computer Engineering</p>
-                  <p>DEF College, 2014-2018</p>
-                  <p className="text-sm text-gray-600">GPA: 3.8/4.0</p>
-                </div>
+                {cvConfig.education.map((edu, index) => (
+                  <div key={index}>
+                    <p className="font-semibold">{edu.degree}</p>
+                    <p>{edu.institution}, {edu.period}</p>
+                    <p className="text-sm text-gray-600">{edu.details}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div>
               <h3 className="text-xl font-bold mb-4 text-primary border-b border-primary/30 pb-2">Skills</h3>
               <div className="space-y-4">
-                <div>
-                  <p className="font-semibold">Programming Languages</p>
-                  <p>Python, JavaScript, Java, C++, SQL</p>
-                </div>
-                <div>
-                  <p className="font-semibold">Machine Learning</p>
-                  <p>TensorFlow, PyTorch, Scikit-learn, Keras</p>
-                </div>
-                <div>
-                  <p className="font-semibold">Web Development</p>
-                  <p>React, Node.js, Express, Tailwind CSS</p>
-                </div>
-                <div>
-                  <p className="font-semibold">Languages</p>
-                  <p>English (Native), Chinese (Fluent), Japanese (Conversational)</p>
-                </div>
+                {cvConfig.skills.map((skill, index) => (
+                  <div key={index}>
+                    <p className="font-semibold">{skill.category}</p>
+                    <p>{skill.items}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -83,9 +66,9 @@ const CV = () => {
           <div className="mt-8">
             <h3 className="text-xl font-bold mb-4 text-primary border-b border-primary/30 pb-2">Selected Publications</h3>
             <ul className="space-y-2 text-sm">
-              <li>Doe, J., Smith, A., & Johnson, B. (2023). Attention-based Deep Learning for Medical Image Analysis. IEEE Journal of Biomedical and Health Informatics.</li>
-              <li>Doe, J., Lee, S., & Wang, H. (2022). Multilingual Transfer Learning in Clinical NLP. Journal of the American Medical Informatics Association.</li>
-              <li>Smith, A., Doe, J., & Brown, C. (2021). Knowledge Graph Construction from Electronic Health Records. Proceedings of KDD.</li>
+              {cvConfig.publications.map((pub, index) => (
+                <li key={index}>{pub}</li>
+              ))}
             </ul>
           </div>
         </motion.div>

@@ -1,3 +1,9 @@
+/*
+ * @Author: Yuzhe Guo
+ * @Date: 2025-07-27 01:18:52
+ * @FilePath: /eco-NIN.github.io/src/components/Navbar.jsx
+ * @Descripttion: 
+ */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,17 +27,18 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-bold text-primary">
-          Academic Profile
+        关于我，也关于世界
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="hover:text-primary transition-colors">{t('nav.home')}</Link>
-          <Link to="/research" className="hover:text-primary transition-colors">{t('nav.research')}</Link>
-          <Link to="/projects" className="hover:text-primary transition-colors">{t('nav.projects')}</Link>
+          {/* <Link to="/homepage" className="hover:text-primary transition-colors">{t('nav.homepage')}</Link> */}
+          {/* <Link to="/research" className="hover:text-primary transition-colors">{t('nav.research')}</Link> */}
+          {/* <Link to="/projects" className="hover:text-primary transition-colors">{t('nav.projects')}</Link> */}
           <Link to="/life" className="hover:text-primary transition-colors">{t('nav.life')}</Link>
-          <Link to="/contact" className="hover:text-primary transition-colors">{t('nav.contact')}</Link>
-          <Link to="/cv" className="hover:text-primary transition-colors">{t('nav.cv')}</Link>
+          {/* <Link to="/contact" className="hover:text-primary transition-colors">{t('nav.contact')}</Link> */}
+          {/* <Link to="/cv" className="hover:text-primary transition-colors">{t('nav.cv')}</Link> */}
           <div className="flex items-center space-x-2 ml-4">
             <button
               onClick={() => changeLanguage('en')}
@@ -74,6 +81,7 @@ const Navbar = () => {
             <Link to="/life" className="hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.life')}</Link>
             <Link to="/contact" className="hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
             <Link to="/cv" className="hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.cv')}</Link>
+            <Link to="/homepage" className="hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.homepage')}</Link>
             <div className="flex items-center space-x-2 mt-2">
               <button
                 onClick={() => changeLanguage('en')}

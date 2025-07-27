@@ -5,12 +5,8 @@
     "projects": "项目",
     "life": "生活",
     "contact": "联系",
-    "cv": "简历"
-  },
-  "home": {
-    "title": "学术个人主页",
-    "intro": "欢迎来到我的学术主页。我是一名专注于人工智能与机器学习领域的研究者。",
-    "photo_alt": "个人照片"
+    "cv": "简历",
+    "homepage": "学术主页"
   },
   "common": {
     "language": "语言",
